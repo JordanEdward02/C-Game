@@ -9,6 +9,9 @@ public:
         state(1),
         altString(newAltString)
     {};
+    ~MyToggleButton() {
+        delete altString;
+    }
 
     void toggle();
 private:

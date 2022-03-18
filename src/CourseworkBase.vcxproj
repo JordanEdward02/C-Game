@@ -93,12 +93,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BaseState.h" />
     <ClInclude Include="DraggingDemo.h" />
     <ClInclude Include="FlashingDemo.h" />
     <ClInclude Include="ImageMappingDemo.h" />
+    <ClInclude Include="LoseState.h" />
+    <ClInclude Include="MenuState.h" />
     <ClInclude Include="MyBasicButton.h" />
     <ClInclude Include="MyTextBar.h" />
     <ClInclude Include="MyToggleButton.h" />
+    <ClInclude Include="PauseState.h" />
+    <ClInclude Include="PlayState.h" />
     <ClInclude Include="Psyjl16Engine.h" />
     <ClInclude Include="MyCharacter.h" />
     <ClInclude Include="MyEnemy.h" />
@@ -131,16 +136,22 @@
     <ClInclude Include="MazeDemoObject.h" />
     <ClInclude Include="MazeDemoTileManager.h" />
     <ClInclude Include="SimpleDemo.h" />
+    <ClInclude Include="WinState.h" />
     <ClInclude Include="ZoomingDemo.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BaseState.cpp" />
     <ClCompile Include="DraggingDemo.cpp" />
     <ClCompile Include="DrawingSurface.cpp" />
     <ClCompile Include="FlashingDemo.cpp" />
     <ClCompile Include="ImageMappingDemo.cpp" />
+    <ClCompile Include="LoseState.cpp" />
+    <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="MyBasicButton.cpp" />
     <ClCompile Include="MyTextBar.cpp" />
     <ClCompile Include="MyToggleButton.cpp" />
+    <ClCompile Include="PauseState.cpp" />
+    <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="Psyjl16Engine.cpp" />
     <ClCompile Include="mainfunction.cpp" />
     <ClCompile Include="BaseEngine.cpp" />
@@ -165,6 +176,7 @@
     <ClCompile Include="MazeDemoTileManager.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="WinState.cpp" />
     <ClCompile Include="ZoomingDemo.cpp" />
   </ItemGroup>
   <ItemGroup>

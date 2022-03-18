@@ -24,6 +24,7 @@ public:
     void virtDoUpdate(int iCurrentTime);
     void setText(string* newString)
     {
+        delete myString;
         myString = newString;
     }
     string getString() {

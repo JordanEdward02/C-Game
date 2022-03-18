@@ -6,6 +6,12 @@
 #include "MyBasicButton.h"
 #include "MyToggleButton.h"
 #include "MyTextBar.h"
+#include "BaseState.h"
+#include "PlayState.h"
+#include "WinState.h"
+#include "LoseState.h"
+#include "MenuState.h"
+#include "PauseState.h"
 
 
 
@@ -13,6 +19,7 @@
 #define MENU_STATE 2
 #define LOSE_STATE 3
 #define WIN_STATE 4
+#define PAUSE_STATE 5
 
 class Psyjl16Engine :
     public BaseEngine
@@ -20,7 +27,12 @@ class Psyjl16Engine :
 public:
     Psyjl16Engine()
         :currentState(MENU_STATE)
+        ,myState(nullptr)
     {
+        myState = new MenuState(this);
+    }
+    ~Psyjl16Engine() {
+        delete myState;
     }
     void virtSetupBackgroundBuffer();
     void virtMouseDown(int iButton, int iX, int iY);
@@ -34,6 +46,7 @@ public:
 private:
     Psyjl16TileManager tm;
     int currentState;
+    BaseState* myState;
 
 };
 
