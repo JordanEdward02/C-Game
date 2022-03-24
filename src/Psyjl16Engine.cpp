@@ -3,6 +3,17 @@
 
 using namespace std;
 
+int Psyjl16Engine::virtInitialise()
+{
+	getBackgroundSurface()->setDrawPointsFilter(&filterScale);
+	getForegroundSurface()->setDrawPointsFilter(&filterScale);
+
+	// Call base class version
+	return BaseEngine::virtInitialise();
+}
+
+
+
 void Psyjl16Engine::virtSetupBackgroundBuffer()
 {
 	myState->renderBackground();
@@ -34,14 +45,16 @@ int Psyjl16Engine::virtInitialiseObjects()
 	return 0;
 }
 
-
 void Psyjl16Engine::virtDrawStringsOnTop() {
 	myState->drawTopString();
 }
 
 void Psyjl16Engine::globalRestart(int newState) {
-	currentState = newState;
-	tm.reset();
+	m_iDefaultUpdatePeriod = 10;
+	bool reloadObjects = true;
+	if (currentState == PAUSE_STATE) {
+		reloadObjects = false;
+	}
 	if (newState == MENU_STATE) {
 		delete myState;
 		myState = new MenuState(this);
@@ -49,6 +62,8 @@ void Psyjl16Engine::globalRestart(int newState) {
 	if (newState == STARTGAME_STATE) {
 		delete myState;
 		myState = new PlayState(this);
+		if (reloadObjects)
+			tm.reset();
 	}
 	if (newState == WIN_STATE) {
 		delete myState;
@@ -57,14 +72,19 @@ void Psyjl16Engine::globalRestart(int newState) {
 	if (newState == LOSE_STATE) {
 		delete myState;
 		myState = new LoseState(this);
+		m_iDefaultUpdatePeriod = 100;
 	}
 	if (newState == PAUSE_STATE) {
 		delete myState;
 		myState = new PauseState(this);
+		reloadObjects = false;
 	}
-	lockAndSetupBackground();
-	if (newState != PAUSE_STATE)
+	currentState = newState;
+	if (reloadObjects) {
+		lockAndSetupBackground();
 		virtInitialiseObjects();
+		xOffset = yOffset = 0;
+	}
 	redrawDisplay();
 }
 
@@ -78,4 +98,45 @@ bool Psyjl16Engine::checkFinish() {
 		return true;
 	}
 	return false;
+}
+
+void Psyjl16Engine::setScale(int iScale) {
+
+	filterScale.setScale(iScale);
+
+}
+
+void Psyjl16Engine::setOffset(int iX, int iY) {
+	filterScale.setOffset(iX, iY);
+}
+
+int Psyjl16Engine::getScale() {
+	return filterScale.getScale();
+}
+
+void Psyjl16Engine::virtMouseWheel(int iX, int iY, int which, int timestamp) {
+	myState->mouseWheel(iX,iY,which,timestamp);
+}
+
+void Psyjl16Engine::virtMainLoopDoBeforeUpdate() {
+	myState->doBeforeUpdate();
+}
+
+void Psyjl16Engine::newBackground(DrawingSurface* newSurface) {
+	m_pBackgroundSurface = newSurface;
+	redrawDisplay();
+}
+
+void Psyjl16Engine::copyAllBackgroundBuffer()
+{
+	if (xOffset < 0)
+		xOffset = getWindowWidth() + xOffset;
+	if (yOffset < 0)
+		yOffset = getWindowHeight() + yOffset;
+	xOffset = xOffset % getWindowWidth();
+	yOffset = yOffset % getWindowHeight();
+	m_pForegroundSurface->copyRectangleFrom(m_pBackgroundSurface, 0, 0, getWindowWidth(), getWindowHeight(), xOffset, yOffset);
+	m_pForegroundSurface->copyRectangleFrom(m_pBackgroundSurface, getWindowWidth() - xOffset, getWindowHeight() - yOffset, getWindowWidth(), getWindowHeight(), xOffset-getWindowWidth(), yOffset - getWindowHeight());
+	m_pForegroundSurface->copyRectangleFrom(m_pBackgroundSurface, 0, getWindowHeight() - yOffset, getWindowWidth(), getWindowHeight(), xOffset, yOffset - getWindowHeight());
+	m_pForegroundSurface->copyRectangleFrom(m_pBackgroundSurface, (getWindowWidth() - xOffset), 0, getWindowWidth(), getWindowHeight(), (xOffset - getWindowWidth()), yOffset);
 }

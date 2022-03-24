@@ -1,28 +1,26 @@
 #pragma once
 #include "TileManager.h"
+
+#define EMPTY 0
+#define SUGAR 1
+#define WALL 2
+
+
 class Psyjl16TileManager :
     public TileManager
 {
 public:
     Psyjl16TileManager()
-        : TileManager(100, 100, 13, 7)
+        : TileManager(100, 100, 15, 10)
     {
         maxSugar = 0;
-        myMap = new int* [13];
-        for (int i = 0; i < 13; i++) {
-            myMap[i] = new int[7]();
-        }
-        for (int i = 0; i < 13; i++) {
-            for (int j = 0; j < 7; j++) {
-                if (rand() % 30 == 0) {
-                    myMap[i][j] = 1;
-                    maxSugar += 1;
-                }
-            }
+        myMap = new int* [15];
+        for (int i = 0; i < 15; i++) {
+            myMap[i] = new int[10]();
         }
     }
     ~Psyjl16TileManager() {
-        for (int i = 0; i < 13; i++) {
+        for (int i = 0; i < 15; i++) {
             delete [] myMap[i];
         }
         delete [] myMap;
@@ -33,8 +31,8 @@ public:
         int iMapX, int iMapY,
         int iStartPositionScreenX, int iStartPositionScreenY) const override;
     void setMyMap(int iX, int iY, int val) {
-        if (val == 0) {
-            myMap[iX][iY] = val;
+        if (val == EMPTY) {
+            myMap[iX][iY] = EMPTY;
             TotalSugar += 1;
         }
     }

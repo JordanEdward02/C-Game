@@ -94,12 +94,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BaseState.h" />
+    <ClInclude Include="CustomFilter.h" />
     <ClInclude Include="DraggingDemo.h" />
     <ClInclude Include="FlashingDemo.h" />
     <ClInclude Include="ImageMappingDemo.h" />
     <ClInclude Include="LoseState.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="MyBasicButton.h" />
+    <ClInclude Include="MyScoreViewer.h" />
     <ClInclude Include="MyTextBar.h" />
     <ClInclude Include="MyToggleButton.h" />
     <ClInclude Include="PauseState.h" />
@@ -141,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseState.cpp" />
+    <ClCompile Include="CustomFilter.cpp" />
     <ClCompile Include="DraggingDemo.cpp" />
     <ClCompile Include="DrawingSurface.cpp" />
     <ClCompile Include="FlashingDemo.cpp" />
@@ -148,6 +151,7 @@
     <ClCompile Include="LoseState.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="MyBasicButton.cpp" />
+    <ClCompile Include="MyScoreViewer.cpp" />
     <ClCompile Include="MyTextBar.cpp" />
     <ClCompile Include="MyToggleButton.cpp" />
     <ClCompile Include="PauseState.cpp" />

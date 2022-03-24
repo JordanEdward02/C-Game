@@ -12,6 +12,8 @@
 #include "LoseState.h"
 #include "MenuState.h"
 #include "PauseState.h"
+#include <fstream>
+#include "CustomFilter.h"
 
 
 
@@ -34,6 +36,7 @@ public:
     ~Psyjl16Engine() {
         delete myState;
     }
+    int virtInitialise();
     void virtSetupBackgroundBuffer();
     void virtMouseDown(int iButton, int iX, int iY);
     void virtKeyDown(int iKeyCode);
@@ -43,10 +46,25 @@ public:
     void globalRestart(int);
     void virtPreDraw();
     bool checkFinish();
+    void setScale(int);
+    void setOffset(int, int);
+    int getScale();
+    void virtMouseWheel(int, int, int, int);
+    void upScale() {
+        filterScale.upScale();
+    };
+    void downScale() {
+        filterScale.downScale();
+    };
+    void virtMainLoopDoBeforeUpdate();
+    void newBackground(DrawingSurface*);
+    void copyAllBackgroundBuffer();
+    int xOffset = 0;
+    int yOffset = 0;
 private:
     Psyjl16TileManager tm;
     int currentState;
     BaseState* myState;
-
+    CustomFilter filterScale;
 };
 

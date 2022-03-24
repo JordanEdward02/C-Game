@@ -1,6 +1,8 @@
 #include "header.h"
 #include "Psyjl16TileManager.h"
 
+
+using namespace std;
 void Psyjl16TileManager::virtDrawTileAt(
 	BaseEngine* pEngine, // We don't need this but maybe a student will so it is here to use if needed
 	DrawingSurface* pSurface,
@@ -13,7 +15,8 @@ void Psyjl16TileManager::virtDrawTileAt(
 		+ (unsigned int)((iMapValue & 0xf) << 4); // blue
 
 	switch (myMap[iMapX][iMapY]) {
-	case 1:
+	case SUGAR:
+	{
 		pSurface->drawRectangle(
 			iStartPositionScreenX, iStartPositionScreenY,
 			iStartPositionScreenX + getTileWidth() - 1,
@@ -22,26 +25,42 @@ void Psyjl16TileManager::virtDrawTileAt(
 		);
 		char buf[64];
 		sprintf(buf, "SUGAR");
-		pSurface->drawFastString(iStartPositionScreenX + 2, iStartPositionScreenY + 30,
-			buf, 0x000000, NULL
-		);
+		pSurface->drawScalableString(iStartPositionScreenX + 2, iStartPositionScreenY + 30,
+			buf, 0x000000, NULL);
+		break;
 	}
+	case WALL:
+	{
+		pSurface->drawRectangle(
+			iStartPositionScreenX, iStartPositionScreenY,
+			iStartPositionScreenX + getTileWidth() - 1,
+			iStartPositionScreenY + getTileHeight() - 1,
+			0x000000
+		);
+		break;
+	}
+	}
+
 }
 
 
 void Psyjl16TileManager::reset() {
 	maxSugar = 0;
-	for (int i = 0; i < 13; i++) {
-		for (int j = 0; j < 7; j++) {
-			if (rand() % 30 == 0) {
-				myMap[i][j] = 1;
-				maxSugar += 1;
+	for (int i = 0; i < 15; i++) {
+		for (int j = 0; j < 10; j++) {
+			if (i == 0 || i == 14 || j == 0 || j == 9) {
+				myMap[i][j] = WALL;
 			}
 			else {
-				myMap[i][j] = 0;
+				if (rand() % 30 == 0) {
+					myMap[i][j] = SUGAR;
+					maxSugar += 1;
+				}
+				else {
+					myMap[i][j] = EMPTY;
+				}
 			}
 		}
 	}
 	TotalSugar = 0;
-
 }

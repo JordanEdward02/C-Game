@@ -4,6 +4,13 @@
 
 using namespace std;
 
+MenuState::MenuState(BaseEngine* myEngine)
+	:BaseState(myEngine)
+{
+	dynamic_cast<Psyjl16Engine*>(myEngine)->setScale(1);
+	dynamic_cast<Psyjl16Engine*>(myEngine)->setOffset(0, 0);
+}
+
 void MenuState::renderBackground() {
 	myEngine->fillBackground(0x966F33);
 	int iWidth = myEngine->getWindowWidth();
@@ -29,6 +36,11 @@ void MenuState::renderBackground() {
 				break;
 			}
 		}
+	char buf[64];
+	sprintf(buf, "HIGHSCORES");
+	myEngine->drawBackgroundString(900, 100, buf, 0x000000);
+	msv.setTopLeftPositionOnScreen(900,150);
+	msv.drawAllTiles(myEngine, myEngine->getBackgroundSurface());
 }
 
 void MenuState::mouseClick(int iButton, int iX, int iY) {
@@ -50,9 +62,9 @@ void MenuState::initialiseObjects() {
 
 	myEngine->createObjectArray(2);
 	MyBasicButton* StartGameBut = new MyBasicButton(myEngine, new string("Start Game"));
-	StartGameBut->setPosition(myEngine->getWindowWidth() / 2 - 150, myEngine->getWindowHeight() / 2 - 150);
+	StartGameBut->setPosition(100, 300);
 	myEngine->storeObjectInArray(0, StartGameBut);
 	MyToggleButton* ToggleColourMode = new MyToggleButton(myEngine, new string("Light Mode"), new string("Dark Mode"));
-	ToggleColourMode->setPosition(myEngine->getWindowWidth() / 2 - 150, myEngine->getWindowHeight() / 2 + 50);
+	ToggleColourMode->setPosition(100, 500);
 	myEngine->storeObjectInArray(1, ToggleColourMode);
 }

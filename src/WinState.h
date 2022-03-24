@@ -11,9 +11,7 @@ class WinState :
     public BaseState
 {
 public:
-    WinState(BaseEngine* myEngine)
-        :BaseState(myEngine)
-    {};
+    WinState(BaseEngine* myEngine);
 
 	void keyPress(int);
 	void renderBackground();
@@ -21,6 +19,10 @@ public:
 	void drawTopString() {};
 	void preDraw() {};
 	void mouseClick(int,int,int);
+	void saveGame();
+
+private:
+	bool saveable;
 };
 
 

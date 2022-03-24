@@ -5,7 +5,7 @@
 using namespace std;
 void MyEnemy::virtDoUpdate(int iCurrentTime) {
 	
-
+	/*
 	auto tempTime = getEngine()->getModifiedTime();
 	if (movementCalc++ % 5 == 0) {
 		m_oMovement.setup(m_iCurrentScreenX, m_iCurrentScreenY,
@@ -31,7 +31,7 @@ void MyEnemy::virtDoUpdate(int iCurrentTime) {
 		m_iDrawHeight)
 		m_iCurrentScreenY = getEngine()->getWindowHeight() -
 		m_iDrawHeight;
-
+		*/
 	// Ensure that the objects get redrawn on the display
 	redrawDisplay();
 }
