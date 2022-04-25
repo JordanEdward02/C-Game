@@ -1,6 +1,9 @@
 #pragma once
 #include "MyObjectB.h"
 #include "UtilMovementPosition.h"
+#include "ImageManager.h"
+#include "SimpleImage.h"
+
 class MyEnemy :
     public MyObjectB
 {
@@ -11,6 +14,7 @@ public:
         stunTime(startTime)
     {
         MyTarget = newTarget;
+        imageSize = 32;
     }
     void stun();
     void reset();
@@ -19,7 +23,7 @@ public:
 protected:
     MyObjectB* MyTarget;
     MovementPosition m_oMovement;
-    int movementCalc;
+    int movementCalc, moveDuration, moveStartTime;
     int stunTime;
 };
 

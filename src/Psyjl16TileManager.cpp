@@ -24,8 +24,8 @@ void Psyjl16TileManager::virtDrawTileAt(
 			0xFFFFFF
 		);
 		char buf[64];
-		sprintf(buf, "SUGAR");
-		pSurface->drawScalableString(iStartPositionScreenX + 2, iStartPositionScreenY + 30,
+		sprintf(buf, "s");
+		pSurface->drawScalableString(iStartPositionScreenX + 8, iStartPositionScreenY + 3,
 			buf, 0x000000, NULL);
 		break;
 	}
@@ -39,6 +39,17 @@ void Psyjl16TileManager::virtDrawTileAt(
 		);
 		break;
 	}
+	case PLANT:
+	{
+		pSurface->drawLine(iStartPositionScreenX+7, iStartPositionScreenY+22, iStartPositionScreenX+25, iStartPositionScreenY+22, 0xeb8f34);
+		plantSprite.renderImageWithMask(pSurface, 0, 0, iStartPositionScreenX+8, iStartPositionScreenY + 8, 16, 16, 0xff00e2);
+		break;
+	}
+	case FIELD:
+	{
+		fieldSprite.renderImageWithMask(pSurface, 0, 0, iStartPositionScreenX + 8, iStartPositionScreenY + 8, 16, 16, 0xff00e2);
+		break;
+	}
 	}
 
 }
@@ -46,21 +57,30 @@ void Psyjl16TileManager::virtDrawTileAt(
 
 void Psyjl16TileManager::reset() {
 	maxSugar = 0;
-	for (int i = 0; i < 15; i++) {
-		for (int j = 0; j < 10; j++) {
-			if (i == 0 || i == 14 || j == 0 || j == 9) {
-				myMap[i][j] = WALL;
-			}
-			else {
-				if (rand() % 30 == 0) {
-					myMap[i][j] = SUGAR;
+	ifstream inFile("LevelData.txt");
+	string line;
+	if (!inFile.is_open())
+		return;
+	//Reads past the first line which is just size params.
+	getline(inFile, line);
+	int pos = 0;
+	int item;
+	for (int i = 0; i < myHeight; i++) {
+		int j = 0;
+		if (getline(inFile, line)) {
+			while ((pos = line.find(',')) != string::npos) {
+				item = stoi(line.substr(0, pos));
+				myMap[j++][i] = item;
+				if (item == 1)
 					maxSugar += 1;
-				}
-				else {
-					myMap[i][j] = EMPTY;
-				}
+				line.erase(0, pos + 1);
 			}
+			item = stoi(line);
+			myMap[j++][i] = item;
+			if (item == 1)
+				maxSugar += 1;
 		}
 	}
+	inFile.close();
 	TotalSugar = 0;
 }

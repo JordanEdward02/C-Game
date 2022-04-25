@@ -12,7 +12,7 @@ MenuState::MenuState(BaseEngine* myEngine)
 }
 
 void MenuState::renderBackground() {
-	myEngine->fillBackground(0x966F33);
+	myEngine->fillBackground(0x424a44);
 	int iWidth = myEngine->getWindowWidth();
 	int iHeight = myEngine->getWindowHeight();
 

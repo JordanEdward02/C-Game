@@ -4,7 +4,8 @@
 
 void MyObjectB::virtDraw()
 {
-	myTexture.renderImageWithMaskAndTransparency(getEngine()->getForegroundSurface(), 0, 0,
+	myTexture.setTransparencyColour(0xFF00E2);
+	myTexture.renderImage(getEngine()->getForegroundSurface(), imageX, imageY,
 		m_iCurrentScreenX, m_iCurrentScreenY,
-		myTexture.getWidth(), myTexture.getHeight(), 0xFFFFFF, 100);
+		imageSize, imageSize);
 }

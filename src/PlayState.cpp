@@ -13,10 +13,12 @@ PlayState::~PlayState() {
 
 void PlayState::renderBackground() {
 
-	myEngine->fillBackground(0x966F33);
+	myEngine->fillBackground(0x424a44);
 	int iWidth = myEngine->getWindowWidth();
 	int iHeight = myEngine->getWindowHeight();
-
+	auto myImage = ImageManager::loadImage("images/SandBackground.jpg", false);
+	myImage.renderImage(myEngine->getBackgroundSurface(), 0, 0, 0, 0, 1300, 800);
+	/*
 	for (int iX = 0; iX < iWidth; iX++)
 		for (int iY = 0; iY < iHeight; iY++) {
 			switch (iY % 25)
@@ -37,9 +39,9 @@ void PlayState::renderBackground() {
 				break;
 			}
 		}
+		*/
 
-
-	dynamic_cast<Psyjl16Engine*>(myEngine)->getTileManager().setTopLeftPositionOnScreen(-100, -100);
+	dynamic_cast<Psyjl16Engine*>(myEngine)->getTileManager().setTopLeftPositionOnScreen(0,0);
 }
 
 void PlayState::keyPress(int iKeyCode) {
@@ -50,6 +52,13 @@ void PlayState::keyPress(int iKeyCode) {
 		myEngine->pause();
 		dynamic_cast<Psyjl16Engine*>(myEngine)->globalRestart(PAUSE_STATE);
 		return;
+	}
+	case 'l':
+	{
+		if (myEngine->isPaused())
+			myEngine->unpause();
+		else
+			myEngine->pause();
 	}
 	}
 
@@ -70,15 +79,15 @@ void PlayState::mouseClick(int iButton, int iX, int iY) {
 void PlayState::initialiseObjects() {
 	myEngine->createObjectArray(2);
 
-	SimpleImage myCharImage = ImageManager::loadImage("images/Ant.png", true);
+	SimpleImage myCharImage = ImageManager::loadImage("images/GiantCrab.png", true);
 	MyCharacter* myPlayer = new MyCharacter(myEngine, myCharImage);
-	myPlayer->setPosition(myEngine->getWindowWidth() / 2 - myPlayer->getDrawWidth() / 2,
-		myEngine->getWindowHeight() - myPlayer->getDrawHeight());
+	myPlayer->setPosition(dynamic_cast<Psyjl16Engine*>(myEngine)->getTileManager().getMapWidth()*25 - myPlayer->getDrawWidth()/2,
+		dynamic_cast<Psyjl16Engine*>(myEngine)->getTileManager().getMapHeight()*25 - myPlayer->getDrawHeight()/2);
 
 
-	SimpleImage myEnemyImage = ImageManager::loadImage("images/Swatter.png", true);
+	SimpleImage myEnemyImage = ImageManager::loadImage("images/YellowDragon.png", true);
 	MyEnemy* myEnemy = new MyEnemy(myEngine, myEnemyImage, myPlayer, myEngine->getModifiedTime());
-	myEnemy->setPosition(0, 0);
+	myEnemy->setPosition(60, 60);
 
 
 	myEngine->storeObjectInArray(0, myPlayer);
@@ -89,8 +98,8 @@ void PlayState::drawTopString() {
 
 	char buf[128];
 	int iSugar = dynamic_cast<Psyjl16Engine*>(myEngine)->getTileManager().getSugar();
-	sprintf(buf, "Sugar eaten : %d", iSugar);
-	myEngine->drawForegroundString(myEngine->getDisplayableObject(0)->getDrawingRegionLeft()-100, myEngine->getDisplayableObject(0)->getDrawingRegionTop()-(60*dynamic_cast<Psyjl16Engine*>(myEngine)->getScale()), buf, 0xFFFFFF, NULL);
+	sprintf(buf, "Score: %d", dynamic_cast<Psyjl16Engine*>(myEngine)->getTileManager().getSugar());
+	myEngine->drawForegroundString(myEngine->getDisplayableObject(0)->getDrawingRegionLeft()-50, myEngine->getDisplayableObject(0)->getDrawingRegionTop()-(25*(dynamic_cast<Psyjl16Engine*>(myEngine)->getScale()%3+1)), buf, 0xFFFFFF, NULL);
 }
 
 void PlayState::preDraw() {

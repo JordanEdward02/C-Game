@@ -1,6 +1,7 @@
 #include "header.h"
 #include "PauseState.h"
 #include "Psyjl16Engine.h"
+#include "MyBasicButton.h"
 
 PauseState::PauseState(BaseEngine* myEngine)
 	:BaseState(myEngine)
@@ -25,11 +26,12 @@ void PauseState::keyPress(int iKeyCode) {
 }
 
 void PauseState::drawTopString() {
-	myEngine->drawForegroundString(myEngine->getDisplayableObject(0)->getDrawingRegionLeft() - 50, myEngine->getDisplayableObject(0)->getDrawingRegionTop() - (75 * dynamic_cast<Psyjl16Engine*>(myEngine)->getScale()), "PAUSED", 0xFFFFFF, NULL);
+	int myScale = dynamic_cast<Psyjl16Engine*>(myEngine)->getScale();
+	myEngine->drawForegroundString(myEngine->getDisplayableObject(0)->getDrawingRegionLeft() - 50, myEngine->getDisplayableObject(0)->getDrawingRegionTop() - (50 * (myScale%3+1)), "PAUSED", 0xFFFFFF, NULL);
 	char buf[128];
 	int iSugar = dynamic_cast<Psyjl16Engine*>(myEngine)->getTileManager().getSugar();
-	sprintf(buf, "Sugar eaten : %d", iSugar);
-	myEngine->drawForegroundString(myEngine->getDisplayableObject(0)->getDrawingRegionLeft() - 100, myEngine->getDisplayableObject(0)->getDrawingRegionTop() - (60 * dynamic_cast<Psyjl16Engine*>(myEngine)->getScale()), buf, 0xFFFFFF, NULL);
+	sprintf(buf, "Score : %d", iSugar);
+	myEngine->drawForegroundString(myEngine->getDisplayableObject(0)->getDrawingRegionLeft() - 100, myEngine->getDisplayableObject(0)->getDrawingRegionTop() - (25 * (myScale%3+1)), buf, 0xFFFFFF, NULL);
 }
 
 void PauseState::preDraw() {

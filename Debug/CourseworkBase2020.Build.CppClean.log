@@ -1,6 +1,7 @@
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\courseworkbase2020.bsc
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\vc142.pdb
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\basestate.sbr
+c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\customfilter.sbr
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\draggingdemo.sbr
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\drawingsurface.sbr
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\flashingdemo.sbr
@@ -8,8 +9,10 @@ c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\imagemappingdemo.sbr
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\losestate.sbr
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\menustate.sbr
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\mybasicbutton.sbr
+c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\myscoreviewer.sbr
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\mytextbar.sbr
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\mytogglebutton.sbr
+c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\pausestate.sbr
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\playstate.sbr
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\psyjl16engine.sbr
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\mainfunction.sbr
@@ -17,12 +20,6 @@ c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\baseengine.sbr
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\displayableobject.sbr
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\fontmanager.sbr
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\mycharacter.sbr
-c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\myenemy.sbr
-c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\myobjectb.sbr
-c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\psyjl16tilemanager.sbr
-c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\psyjl16tilemanager.obj
-c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\myobjectb.obj
-c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\myenemy.obj
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\mycharacter.obj
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\fontmanager.obj
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\displayableobject.obj
@@ -30,8 +27,10 @@ c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\baseengine.obj
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\mainfunction.obj
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\psyjl16engine.obj
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\playstate.obj
+c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\pausestate.obj
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\mytogglebutton.obj
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\mytextbar.obj
+c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\myscoreviewer.obj
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\mybasicbutton.obj
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\menustate.obj
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\losestate.obj
@@ -39,7 +38,11 @@ c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\imagemappingdemo.obj
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\flashingdemo.obj
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\drawingsurface.obj
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\draggingdemo.obj
+c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\customfilter.obj
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\basestate.obj
+c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\myenemy.sbr
+c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\myobjectb.sbr
+c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\psyjl16tilemanager.sbr
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\simpleimage.sbr
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\simpledemo.sbr
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\starfielddemo.sbr
@@ -56,6 +59,11 @@ c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\tilemanager.obj
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\starfielddemo.obj
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\simpledemo.obj
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\simpleimage.obj
+c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\psyjl16tilemanager.obj
+c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\myobjectb.obj
+c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\myenemy.obj
+c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\antkiller.sbr
+c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\antkiller.obj
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\mazedemomain.sbr
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\mazedemoobject.sbr
 c:\users\jorda\desktop\c++\cppcoursework2021-v102\debug\mazedemotilemanager.sbr

@@ -61,6 +61,11 @@ public:
     void copyAllBackgroundBuffer();
     int xOffset = 0;
     int yOffset = 0;
+    CustomFilter& getFilter() {
+        return filterScale;
+    }
+    void setBackgroundX(int);
+    void setBackgroundY(int);
 private:
     Psyjl16TileManager tm;
     int currentState;

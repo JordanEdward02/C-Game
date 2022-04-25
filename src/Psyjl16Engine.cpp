@@ -62,8 +62,10 @@ void Psyjl16Engine::globalRestart(int newState) {
 	if (newState == STARTGAME_STATE) {
 		delete myState;
 		myState = new PlayState(this);
-		if (reloadObjects)
+		if (reloadObjects) {
 			tm.reset();
+			setScale(2);
+		}
 	}
 	if (newState == WIN_STATE) {
 		delete myState;
@@ -126,7 +128,13 @@ void Psyjl16Engine::newBackground(DrawingSurface* newSurface) {
 	m_pBackgroundSurface = newSurface;
 	redrawDisplay();
 }
+void Psyjl16Engine::setBackgroundX(int newX) {
+	xOffset += newX * getScale();
+}
 
+void Psyjl16Engine::setBackgroundY(int newY) {
+	yOffset += newY * getScale();
+}
 void Psyjl16Engine::copyAllBackgroundBuffer()
 {
 	if (xOffset < 0)
@@ -135,8 +143,8 @@ void Psyjl16Engine::copyAllBackgroundBuffer()
 		yOffset = getWindowHeight() + yOffset;
 	xOffset = xOffset % getWindowWidth();
 	yOffset = yOffset % getWindowHeight();
-	m_pForegroundSurface->copyRectangleFrom(m_pBackgroundSurface, 0, 0, getWindowWidth(), getWindowHeight(), xOffset, yOffset);
-	m_pForegroundSurface->copyRectangleFrom(m_pBackgroundSurface, getWindowWidth() - xOffset, getWindowHeight() - yOffset, getWindowWidth(), getWindowHeight(), xOffset-getWindowWidth(), yOffset - getWindowHeight());
-	m_pForegroundSurface->copyRectangleFrom(m_pBackgroundSurface, 0, getWindowHeight() - yOffset, getWindowWidth(), getWindowHeight(), xOffset, yOffset - getWindowHeight());
-	m_pForegroundSurface->copyRectangleFrom(m_pBackgroundSurface, (getWindowWidth() - xOffset), 0, getWindowWidth(), getWindowHeight(), (xOffset - getWindowWidth()), yOffset);
+	m_pForegroundSurface->copyRectangleFrom(m_pBackgroundSurface, 0, 0, getWindowWidth(), getWindowHeight(), xOffset-1, yOffset-1);
+	m_pForegroundSurface->copyRectangleFrom(m_pBackgroundSurface, getWindowWidth() - xOffset, getWindowHeight() - yOffset, getWindowWidth(), getWindowHeight(), xOffset-getWindowWidth()+1, yOffset - getWindowHeight()+1);
+	m_pForegroundSurface->copyRectangleFrom(m_pBackgroundSurface, 0, getWindowHeight() - yOffset, getWindowWidth(), getWindowHeight(), xOffset-1, yOffset - getWindowHeight() + 1);
+	m_pForegroundSurface->copyRectangleFrom(m_pBackgroundSurface, getWindowWidth() - xOffset, 0, getWindowWidth(), getWindowHeight(), (xOffset - getWindowWidth() + 1), yOffset-1);
 }

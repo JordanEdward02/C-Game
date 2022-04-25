@@ -10,48 +10,42 @@ public:
 
 	virtual bool filter(DrawingSurface* surface, int& x, int& y, unsigned int& uiColour) override
 	{
+		// If the pixel is off the screen due to the offset being too negative
 		if (x - myXOffset < 0) 
 			return 0;
 		if (y - myYOffset < 0)
 			return 0;
+		// If the pixel is within the bounds of the screen with the offset and then multiplied by the scale
 		if ((x-myXOffset) * myScale < surface->getSurfaceWidth() && (y-myYOffset) * myScale < surface->getSurfaceHeight()) {
 			x = (x - myXOffset) * myScale;
 			y = (y - myYOffset) * myScale;
+			// Set all the pixels value from the one we are stretching out
 			for (int i = 0; i < myScale; i++) {
 				for (int j = 0; j < myScale; j++) {
 					if (x+i < 1300 && x+i>0 && y+j<800 && y+j>0)
 						surface->rawSetPixel(x+i, y+j, uiColour);
 				}
 			}
+			// return 0 since we did the drawing
 			return 0;
 		}
 		return 0;
 	};
-
-	/*
-	If your filter is implementing virtual positions then this converts from a real screen pixel position to a virtual position, according to the translation that the filter applies.
-	*/
+	//Converts location on screen to virtual location
 	virtual int filterConvertRealToVirtualXPosition(int x) override 
 	{
 			return x/ myScale + myXOffset;
 	}
-	/*
-	If your filter is implementing virtual positions then this converts from a real screen pixel position to a virtual position, according to the translation that the filter applies.
-	*/
 	virtual int filterConvertRealToVirtualYPosition(int y) override
 	{ 
 			return y/ myScale + myYOffset;
 	}
-	/*
-	If your filter is implementing virtual positions then this converts from a virtual pixel position to a real screen position, according to the translation that the filter applies.
-	*/
+
+	//Converts a virtual location to a point on the screen (opposite of other functions)
 	virtual int filterConvertVirtualToRealXPosition(int x) override
 	{ 
 			return (x - myXOffset) * myScale;
 	}
-	/*
-	If your filter is implementing virtual positions then this converts from a virtual pixel position to a real screen position, according to the translation that the filter applies.
-	*/
 	virtual int filterConvertVirtualToRealYPosition(int y) override
 	{
 		return (y - myYOffset) * myScale;
