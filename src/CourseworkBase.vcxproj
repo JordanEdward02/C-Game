@@ -93,7 +93,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AntKiller.h" />
+    <ClInclude Include="Fire.h" />
     <ClInclude Include="BaseState.h" />
     <ClInclude Include="CustomFilter.h" />
     <ClInclude Include="DraggingDemo.h" />
@@ -143,7 +143,7 @@
     <ClInclude Include="ZoomingDemo.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AntKiller.cpp" />
+    <ClCompile Include="Fire.cpp" />
     <ClCompile Include="BaseState.cpp" />
     <ClCompile Include="CustomFilter.cpp" />
     <ClCompile Include="DraggingDemo.cpp" />

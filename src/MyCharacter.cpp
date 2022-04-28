@@ -36,15 +36,7 @@ void MyCharacter::virtDoUpdate(int iCurrentTime) {
 		dynamic_cast<Psyjl16Engine*>(getEngine())->setBackgroundX(2);
 		imageY = 48;
 	}
-	/*
-	auto myEnemy = getEngine()->getDisplayableObject(1);
-	if (CollisionDetection::checkRectangles(this->getDrawingRegionLeft(), this->getDrawingRegionRight(),
-		this->getDrawingRegionTop(), this->getDrawingRegionBottom(), myEnemy->getDrawingRegionLeft(),
-		myEnemy->getDrawingRegionRight(), myEnemy->getDrawingRegionTop(), myEnemy->getDrawingRegionBottom())) {
-		((Psyjl16Engine*)getEngine())->globalRestart(LOSE_STATE);
-		return;
-	}
-	*/
+
 	int tempX = ((Psyjl16Engine*)getEngine())->getTileManager().getMapXForScreenX(getRight() - 1);
 	int tempY = ((Psyjl16Engine*)getEngine())->getTileManager().getMapYForScreenY(getBottom() - 1);
 	// BOTTOM RIGHT

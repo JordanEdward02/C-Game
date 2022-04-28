@@ -1,6 +1,6 @@
 #include "header.h"
 #include "MyEnemy.h"
-#include "AntKiller.h"
+#include "Fire.h"
 #include "BaseEngine.h"
 #include "Psyjl16Engine.h"
 
@@ -48,58 +48,12 @@ void MyEnemy::virtDoUpdate(int iCurrentTime) {
 		xDif = m_oMovement.getX() - m_iCurrentScreenX;
 		yDif = m_oMovement.getY() - m_iCurrentScreenY;
 	}
-	/*
-	//RIGHT TOP AND BOTTOM CHECKS
-	int tempX = ((Psyjl16Engine*)getEngine())->getTileManager().getMapXForScreenX(getRight() - 1+xDif);
-	int tempY = ((Psyjl16Engine*)getEngine())->getTileManager().getMapYForScreenY(getBottom() - 1);
-	if (((Psyjl16Engine*)getEngine())->getTileManager().getMyMap(tempX, tempY) == WALL) 
-		xDif = 0;
-
-	tempY = ((Psyjl16Engine*)getEngine())->getTileManager().getMapYForScreenY(getTop() - 1);
-	if (((Psyjl16Engine*)getEngine())->getTileManager().getMyMap(tempX, tempY) == WALL)
-		xDif = 0;
-
-	//LEFT TOP AND BOTTOM CHECKS
-	tempX = ((Psyjl16Engine*)getEngine())->getTileManager().getMapXForScreenX(getLeft() - 1 + xDif);
-	tempY = ((Psyjl16Engine*)getEngine())->getTileManager().getMapYForScreenY(getBottom() - 1);
-	if (((Psyjl16Engine*)getEngine())->getTileManager().getMyMap(tempX, tempY) == WALL)
-		xDif = 0;
-
-	tempY = ((Psyjl16Engine*)getEngine())->getTileManager().getMapYForScreenY(getTop() - 1);
-	if (((Psyjl16Engine*)getEngine())->getTileManager().getMyMap(tempX, tempY) == WALL)
-		xDif = 0;
-
-	//
-	//
-	//
-	
-	//BOTTOM LEFT AND RIGHT CHECKS
-	tempY = ((Psyjl16Engine*)getEngine())->getTileManager().getMapYForScreenY(getBottom() - 1 + yDif);
-	tempX = ((Psyjl16Engine*)getEngine())->getTileManager().getMapXForScreenX(getLeft() - 1);
-	if (((Psyjl16Engine*)getEngine())->getTileManager().getMyMap(tempX, tempY) == WALL)
-		yDif = 0;
-
-	tempX = ((Psyjl16Engine*)getEngine())->getTileManager().getMapYForScreenY(getRight() - 1);
-	if (((Psyjl16Engine*)getEngine())->getTileManager().getMyMap(tempX, tempY) == WALL)
-		yDif = 0;
-
-	//TOP LEFT AND RIGHT CHECKS
-	tempY = ((Psyjl16Engine*)getEngine())->getTileManager().getMapYForScreenY(getTop() - 1 + yDif);
-	tempX = ((Psyjl16Engine*)getEngine())->getTileManager().getMapXForScreenX(getRight() - 1);
-	if (((Psyjl16Engine*)getEngine())->getTileManager().getMyMap(tempX, tempY) == WALL)
-		yDif = 0;
-
-	tempX = ((Psyjl16Engine*)getEngine())->getTileManager().getMapYForScreenY(getLeft() - 1);
-	if (((Psyjl16Engine*)getEngine())->getTileManager().getMyMap(tempX, tempY) == WALL)
-		yDif = 0;
-
-	*/
 
 	// Creates all the antkiller objects randomly below its current position. These are what kill the player and end the game
 	// They are added to the object queue and remove themselves upon 5 seconds passing.
 	if (movementCalc % 30 == 0) {
 		SimpleImage killerImage = ImageManager::loadImage("images/FireballProjectile.png", true);
-		AntKiller* newKiller = new AntKiller(getEngine(), killerImage, tempTime);
+		Fire* newKiller = new Fire(getEngine(), killerImage, tempTime, MyTarget);
 		int spawnY = getBottom() + (rand() % 20) + 5;
 		int spawnX = getLeft() + (getSize() / 2) + (rand() % 40) - 20;
 		if (imageY == 32)

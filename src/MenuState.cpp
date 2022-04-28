@@ -51,7 +51,7 @@ void MenuState::mouseClick(int iButton, int iX, int iY) {
 			return;
 		}
 		if (myEngine->getDisplayableObject(1)->virtIsPositionWithinObject(iX, iY)) {
-			dynamic_cast<Psyjl16Engine*>(myEngine)->globalRestart(WIN_STATE);
+			dynamic_cast<MyToggleButton*>(myEngine->getDisplayableObject(1))->toggle();
 			return;
 		}
 		//((MyToggleButton*)getDisplayableObject(1))->toggle();
@@ -64,7 +64,7 @@ void MenuState::initialiseObjects() {
 	MyBasicButton* StartGameBut = new MyBasicButton(myEngine, new string("Start Game"));
 	StartGameBut->setPosition(100, 300);
 	myEngine->storeObjectInArray(0, StartGameBut);
-	MyToggleButton* ToggleColourMode = new MyToggleButton(myEngine, new string("Light Mode"), new string("Dark Mode"));
+	MyToggleButton* ToggleColourMode = new MyToggleButton(myEngine, new string("On"), new string("Off"));
 	ToggleColourMode->setPosition(100, 500);
 	myEngine->storeObjectInArray(1, ToggleColourMode);
 }

@@ -18,28 +18,6 @@ void PlayState::renderBackground() {
 	int iHeight = myEngine->getWindowHeight();
 	auto myImage = ImageManager::loadImage("images/SandBackground.jpg", false);
 	myImage.renderImage(myEngine->getBackgroundSurface(), 0, 0, 0, 0, 1300, 800);
-	/*
-	for (int iX = 0; iX < iWidth; iX++)
-		for (int iY = 0; iY < iHeight; iY++) {
-			switch (iY % 25)
-			{
-			case 0:
-				switch (rand() % 2) {
-				case 0:
-					myEngine->setBackgroundPixel(iX, iY, 0x000000);
-					break;
-				}
-				break;
-			case 12:
-				switch (rand() % 4) {
-				case 0:
-					myEngine->setBackgroundPixel(iX, iY, 0x000000);
-					break;
-				}
-				break;
-			}
-		}
-		*/
 
 	dynamic_cast<Psyjl16Engine*>(myEngine)->getTileManager().setTopLeftPositionOnScreen(0,0);
 }
@@ -59,6 +37,17 @@ void PlayState::keyPress(int iKeyCode) {
 			myEngine->unpause();
 		else
 			myEngine->pause();
+		break;
+	}
+	case 'o':
+	{
+		if (dynamic_cast<MyObjectB*>(myEngine->getDisplayableObject(0))->getTexture().getImageURL() == "images/GiantCrab.png") {
+			dynamic_cast<MyObjectB*>(myEngine->getDisplayableObject(0))->setTexture(ImageManager::loadImage("images/DemoCurve.png", false));
+		}
+		else {
+			dynamic_cast<MyObjectB*>(myEngine->getDisplayableObject(0))->setTexture(ImageManager::loadImage("images/GiantCrab.png", false));
+		}
+		break;
 	}
 	}
 
@@ -79,13 +68,13 @@ void PlayState::mouseClick(int iButton, int iX, int iY) {
 void PlayState::initialiseObjects() {
 	myEngine->createObjectArray(2);
 
-	SimpleImage myCharImage = ImageManager::loadImage("images/GiantCrab.png", true);
+	SimpleImage myCharImage = ImageManager::loadImage("images/GiantCrab.png", false);
 	MyCharacter* myPlayer = new MyCharacter(myEngine, myCharImage);
 	myPlayer->setPosition(dynamic_cast<Psyjl16Engine*>(myEngine)->getTileManager().getMapWidth()*25 - myPlayer->getDrawWidth()/2,
 		dynamic_cast<Psyjl16Engine*>(myEngine)->getTileManager().getMapHeight()*25 - myPlayer->getDrawHeight()/2);
 
 
-	SimpleImage myEnemyImage = ImageManager::loadImage("images/YellowDragon.png", true);
+	SimpleImage myEnemyImage = ImageManager::loadImage("images/YellowDragon.png", false);
 	MyEnemy* myEnemy = new MyEnemy(myEngine, myEnemyImage, myPlayer, myEngine->getModifiedTime());
 	myEnemy->setPosition(60, 60);
 

@@ -2,6 +2,8 @@
 #include "DisplayableObject.h"
 #include "SimpleImage.h"
 
+#define INVIS 0xFF00E2
+
 class MyObjectB :
     public DisplayableObject
 {
@@ -30,6 +32,13 @@ public:
     }
     int getRight() {
         return m_iCurrentScreenX + imageSize;
+    }
+    bool checkCollision(MyObjectB*);
+    SimpleImage getTexture() {
+        return myTexture;
+    }
+    void setTexture(SimpleImage newImage) {
+        myTexture = newImage;
     }
 protected:
     SimpleImage myTexture;
